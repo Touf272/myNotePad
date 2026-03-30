@@ -7,46 +7,23 @@
 |
 */
 
-import { middleware } from '#start/kernel'
 import router from '@adonisjs/core/services/router'
 import { controllers } from '#generated/controllers'
 
-
-
-router.group(() => {
-    router
-      .group(() => {
-        router.post('signup', [controllers.NewAccount, 'store'])
-        router.post('login', [controllers.AccessToken, 'store'])
-        router.post('logout', [controllers.AccessToken, 'destroy']).use(middleware.auth())
-      })
-      .prefix('auth')
-      .as('auth')
-
-    router
-      .group(() => {
-        router.get('/profile', [controllers.Profile, 'show'])
-      })
-      .prefix('account')
-      .as('profile')
-      .use(middleware.auth())
+router
+  .group(() => {
     router.get('/', () => {
       return { hello: 'world' }
     })
-    router.get("/notes/", () => {
-      return {notes: "get yesyes"}
-    })
-    router.post("/notes/", () => {
-      return {notes: "post yesyes"}
-    })
-    router.get("/notes/:id", ({params}) => {
-      return {type: "get", value: params.id}
-    })
-    router.put("/notes/:id", ({params}) => {
-      return {type: "put", value: params.id}
-    })
-    router.delete("/notes/:id", ({params}) => {
-      return {type: "delete", value: params.id}
-    })
+
+    router.post('/notes', [controllers.NewNote, 'store']) // Create a new note
+
+    router.get('/notes', [controllers.NewNote, 'index']) // get all notes
+
+    router.get('/notes/:id', [controllers.NewNote, 'show']) // show specific note
+
+    router.put('/notes/:id', [controllers.NewNote, 'update']) // modify specific note (title & data)
+
+    router.delete('/notes/:id', [controllers.NewNote, 'destroy']) // destroy a note
   })
   .prefix('/api')

@@ -6,29 +6,35 @@ import type { ApiDefinition } from './tree.d.ts'
 const placeholder: any = {}
 
 const routes = {
-  'auth.new_account.store': {
+  'new_note.store': {
     methods: ["POST"],
-    pattern: '/api/auth/signup',
-    tokens: [{"old":"/api/auth/signup","type":0,"val":"api","end":""},{"old":"/api/auth/signup","type":0,"val":"auth","end":""},{"old":"/api/auth/signup","type":0,"val":"signup","end":""}],
-    types: placeholder as Registry['auth.new_account.store']['types'],
+    pattern: '/api/notes',
+    tokens: [{"old":"/api/notes","type":0,"val":"api","end":""},{"old":"/api/notes","type":0,"val":"notes","end":""}],
+    types: placeholder as Registry['new_note.store']['types'],
   },
-  'auth.access_token.store': {
-    methods: ["POST"],
-    pattern: '/api/auth/login',
-    tokens: [{"old":"/api/auth/login","type":0,"val":"api","end":""},{"old":"/api/auth/login","type":0,"val":"auth","end":""},{"old":"/api/auth/login","type":0,"val":"login","end":""}],
-    types: placeholder as Registry['auth.access_token.store']['types'],
-  },
-  'auth.access_token.destroy': {
-    methods: ["POST"],
-    pattern: '/api/auth/logout',
-    tokens: [{"old":"/api/auth/logout","type":0,"val":"api","end":""},{"old":"/api/auth/logout","type":0,"val":"auth","end":""},{"old":"/api/auth/logout","type":0,"val":"logout","end":""}],
-    types: placeholder as Registry['auth.access_token.destroy']['types'],
-  },
-  'profile.profile.show': {
+  'new_note.index': {
     methods: ["GET","HEAD"],
-    pattern: '/api/account/profile',
-    tokens: [{"old":"/api/account/profile","type":0,"val":"api","end":""},{"old":"/api/account/profile","type":0,"val":"account","end":""},{"old":"/api/account/profile","type":0,"val":"profile","end":""}],
-    types: placeholder as Registry['profile.profile.show']['types'],
+    pattern: '/api/notes',
+    tokens: [{"old":"/api/notes","type":0,"val":"api","end":""},{"old":"/api/notes","type":0,"val":"notes","end":""}],
+    types: placeholder as Registry['new_note.index']['types'],
+  },
+  'new_note.show': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/notes/:id',
+    tokens: [{"old":"/api/notes/:id","type":0,"val":"api","end":""},{"old":"/api/notes/:id","type":0,"val":"notes","end":""},{"old":"/api/notes/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['new_note.show']['types'],
+  },
+  'new_note.update': {
+    methods: ["PUT"],
+    pattern: '/api/notes/:id',
+    tokens: [{"old":"/api/notes/:id","type":0,"val":"api","end":""},{"old":"/api/notes/:id","type":0,"val":"notes","end":""},{"old":"/api/notes/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['new_note.update']['types'],
+  },
+  'new_note.destroy': {
+    methods: ["DELETE"],
+    pattern: '/api/notes/:id',
+    tokens: [{"old":"/api/notes/:id","type":0,"val":"api","end":""},{"old":"/api/notes/:id","type":0,"val":"notes","end":""},{"old":"/api/notes/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['new_note.destroy']['types'],
   },
 } as const satisfies Record<string, AdonisEndpoint>
 
