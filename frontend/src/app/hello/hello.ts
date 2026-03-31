@@ -1,11 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { NoteService, Note } from '../Services/note.service';
 import { RouterLink } from '@angular/router';
+import { ChangeDetectorRef } from '@angular/core';
 
-// Hello process, prints goodbye and can redirect to Goodbye
 @Component({
   selector: 'app-hello',
-  imports: [RouterLink],
+  standalone: true,
   templateUrl: './hello.html',
-  styleUrl: './hello.css',
+  imports: [RouterLink],
 })
-export class Hello {}
+
+export class Hello implements OnInit {
+  note?: Note;
+
+  constructor(
+    private noteService: NoteService,
+    private cdr: ChangeDetectorRef
+  ) {}
+
+  ngOnInit() {
+    this.noteService.getNote(1).subscribe(data => {
+      this.note = data;
+      this.cdr.detectChanges();
+    });
+  }
+}
