@@ -20,15 +20,13 @@ export default class NewNoteController {
     }
   }
   async show({ params }: HttpContext) { // send data of a specific note
-     console.log("Show")
+    console.log("Show: ", params.id)
     return await Note.findOrFail(params.id)
   }
   async store({ request, serialize }: HttpContext) { // Create a new note
     console.log("Create")
     const { title, content } = await request.validateUsing(createValidator)
-
     const newNote = await Note.create({ title, content })
-
     return serialize({
       note: NoteTransformer.transform(newNote),
     })
@@ -36,12 +34,9 @@ export default class NewNoteController {
   async update({ params, request }: HttpContext) { // Modify a note
     console.log("Update")
     const note = await Note.findOrFail(params.id)
-
     const data = request.only(['title', 'content'])
-
     note.merge(data)
     await note.save()
-
     return note
   }
   async destroy({ params }: HttpContext) { // Delete a note

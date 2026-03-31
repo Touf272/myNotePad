@@ -1,10 +1,9 @@
 <h1>Hello</h1>
 
-@if (note) {
-  <div>
-    <h2>{{ note.title }}</h2>
-    <p>{{ note.content }}</p>
-  </div>
-}
+<div>
+  <blockquote contenteditable="true" #title><h2>{{ note.title }}</h2></blockquote>
+  <blockquote contenteditable="true" #content><p>{{ note.content }}</p></blockquote>
+</div>
 
+<button (click)="save(title, content)">Create new</button>
 <button routerLink="/goodbye">Go to Goodbye</button>

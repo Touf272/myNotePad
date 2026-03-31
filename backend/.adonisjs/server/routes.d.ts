@@ -10,6 +10,9 @@ export type ScannedRoutes = {
     'new_note.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'new_note.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
+  POST: {
+    'new_note.store': { paramsTuple?: []; params?: {} }
+  }
   GET: {
     'new_note.index': { paramsTuple?: []; params?: {} }
     'new_note.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -17,9 +20,6 @@ export type ScannedRoutes = {
   HEAD: {
     'new_note.index': { paramsTuple?: []; params?: {} }
     'new_note.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
-  }
-  POST: {
-    'new_note.store': { paramsTuple?: []; params?: {} }
   }
   PUT: {
     'new_note.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }

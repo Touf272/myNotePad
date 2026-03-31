@@ -1,3 +1,6 @@
 <h1>Goodbye</h1>
-<p>Goodbye works!</p>
+<blockquote contenteditable="true" #title><h1>Title</h1></blockquote>
+<blockquote contenteditable="true" #content><p>Goodbye works</p></blockquote>
+
+<button (click)="create(title, content)">Create new</button>
 <button routerLink="/hello">Go to Hello</button>

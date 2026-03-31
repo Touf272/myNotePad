@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Injectable } from '@angular/core';
@@ -27,7 +27,28 @@ export class NoteService {
     console.log(this.apiUrl + id)
     return this.http.get<Note>(this.apiUrl + id);
   }
+
   getAllNotes(): Observable<NoteList> {
     return this.http.get<NoteList>(this.apiUrl)
+  }
+
+  createNote(title: String, content: String) {
+    return this.http.post(this.apiUrl, {
+        title,
+        content
+      })
+  }
+
+  modifyNote(id: Number, title: String, content: String) {
+    console.log("trying to modify: ", (this.apiUrl + id))
+    return this.http.put(this.apiUrl + id,
+      {
+        title,
+        content,
+    });
+  }
+
+  deleteNote(id: Number) {
+    return this.http.delete(this.apiUrl + id);
   }
 }

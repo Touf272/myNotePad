@@ -12,18 +12,14 @@ import { controllers } from '#generated/controllers'
 
 router
   .group(() => {
-    router.get('/', () => {
-      return { hello: 'world' }
-    })
+    router.post('/', [controllers.NewNote, 'store']) // Create a new note
 
-    router.post('/notes', [controllers.NewNote, 'store']) // Create a new note
+    router.get('/', [controllers.NewNote, 'index']) // get all 
 
-    router.get('/notes', [controllers.NewNote, 'index']) // get all notes
+    router.get('/:id', [controllers.NewNote, 'show']) // show specific note
 
-    router.get('/notes/:id', [controllers.NewNote, 'show']) // show specific note
+    router.put('/:id', [controllers.NewNote, 'update']) // modify specific note (title & data)
 
-    router.put('/notes/:id', [controllers.NewNote, 'update']) // modify specific note (title & data)
-
-    router.delete('/notes/:id', [controllers.NewNote, 'destroy']) // destroy a note
+    router.delete('/:id', [controllers.NewNote, 'destroy']) // destroy a note
   })
-  .prefix('/api')
+  .prefix('/api/notes')
