@@ -1,9 +1,7 @@
-<h1>Hello</h1>
+<h1>Edit Note</h1>
 
-<div>
-  <blockquote contenteditable="true" #title><h2>{{ note.title }}</h2></blockquote>
-  <blockquote contenteditable="true" #content><p>{{ note.content }}</p></blockquote>
-</div>
+<blockquote contenteditable="true" #title>{{ note.title }}</blockquote>
+<blockquote contenteditable="true" #content>{{ note.content }}</blockquote>
 
-<button (click)="save(title, content)">Create new</button>
-<button routerLink="/goodbye">Go to Goodbye</button>
+<button (click)="save(title, content)">Save</button>
+<button routerLink="/">Back</button>

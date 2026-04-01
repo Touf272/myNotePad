@@ -11,10 +11,6 @@ export interface Note {
   updatedAt: string;
 }
 
-export interface NoteList {
-  items: Array<Note>
-}
-
 @Injectable({
   providedIn: 'root'
 })
@@ -28,8 +24,8 @@ export class NoteService {
     return this.http.get<Note>(this.apiUrl + id);
   }
 
-  getAllNotes(): Observable<NoteList> {
-    return this.http.get<NoteList>(this.apiUrl)
+  getAllNotes(): Observable<Note[]> {
+    return this.http.get<Note[]>(this.apiUrl)
   }
 
   createNote(title: String, content: String) {

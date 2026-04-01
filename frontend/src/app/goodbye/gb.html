@@ -1,6 +1,11 @@
-<h1>Goodbye</h1>
-<blockquote contenteditable="true" #title><h1>Title</h1></blockquote>
-<blockquote contenteditable="true" #content><p>Goodbye works</p></blockquote>
+<h1>Notes List</h1>
+<p>{{ notes.length }}</p>
 
-<button (click)="create(title, content)">Create new</button>
-<button routerLink="/hello">Go to Hello</button>
+<hr>
+<div *ngFor="let note of notes">
+  <h3>{{ note.title }}</h3>
+  <p>{{ note.content }}</p>
+
+  <button [routerLink]="['/edit', note.id]">Edit</button>
+  <button (click)="delete(note.id)">Delete</button>
+</div>

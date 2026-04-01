@@ -1,30 +1,51 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Note, NoteService } from '../Services/note.service';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectorRef } from '@angular/core';
 
-// Goodbye process, prints goodbye and can redirect to Hello
 @Component({
-  selector: 'app-hello',
-  imports: [RouterLink],
+  selector: 'app-gb',
+  standalone: true,
+  imports: [RouterLink, CommonModule],
   templateUrl: './gb.html',
   styleUrl: './gb.css',
 })
-export class Gb {
-  note?: Note;
+
+export class Gb implements OnInit {
+  note: Note = {
+    id: 0,
+    title: '',
+    content: '',
+    createdAt: "",
+    updatedAt: ""
+  };
+  notes: Note[] = [];
 
   constructor(
     private noteService: NoteService,
-  ) {}
-  create(titleElement: HTMLElement, contentElement: HTMLElement) {
-    const title = titleElement.innerText.trim();
-    const content = contentElement.innerText.trim();
-    this.noteService.createNote(title, content).subscribe({
+    private cdr: ChangeDetectorRef) {
+    console.log('Gb instance created');
+  }
+
+  ngOnInit() {
+    this.loadNotes();
+  }
+  loadNotes() {
+    console.log("loading notes")
+    this.noteService.getAllNotes().subscribe({
       next: (res) => {
-        console.log('Created note:', res);
+        console.log("response: ", res)
+        this.notes = res;
+        console.log("real notes: ", this.notes);
+        this.cdr.markForCheck();
       },
-      error: (err) => {
-        console.error('Error creating note:', err);
-      }
+      error: (err) => console.error(err)
+    });
+  }
+  delete(id: Number) {
+    this.noteService.deleteNote(id).subscribe(() => {
+      this.loadNotes();
     });
   }
 }

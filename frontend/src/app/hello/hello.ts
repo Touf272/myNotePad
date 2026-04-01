@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NoteService, Note } from '../Services/note.service';
 import { RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
@@ -11,47 +12,37 @@ import { ChangeDetectorRef } from '@angular/core';
 })
 
 export class Hello implements OnInit {
-  note: Note= {
+  note: Note = {
     id: 0,
     title: '',
     content: '',
     createdAt: "",
     updatedAt: ""
   };
-  actId: number = 1;
+
+  actId: number = 0;
 
   constructor(
     private noteService: NoteService,
+    private route: ActivatedRoute,
     private cdr: ChangeDetectorRef
   ) {}
 
+  ngOnInit() {
+    this.actId = Number(this.route.snapshot.paramMap.get('id'));
 
-  public setVar(newId: number) { // Modifies actId to change focused value
-    if (newId < 1)
-      return;
-    this.actId = newId;
+    this.noteService.getNote(this.actId).subscribe(data => {
+      this.note = data;
+      console.log(this.note)
+      this.cdr.markForCheck();
+    });
   }
 
   save(titleElement: HTMLElement, contentElement: HTMLElement) {
-    if (this.actId == 0) {
-      console.log("Create")
-      this.noteService.createNote(
-        titleElement.innerText.trim(),
-        contentElement.innerText.trim()).subscribe();
-    } else {
-      console.log("Modify n°", this.actId)
-      this.noteService.modifyNote(
-        this.actId,
-        titleElement.innerText.trim(),
-        contentElement.innerText.trim()).subscribe();
-    }
-  } 
-
-  ngOnInit() { // initializes the current note to be modofied. If actId is at 0, then the note is treated as a new one
-    if (this.actId != 0)
-      this.noteService.getNote(this.actId).subscribe(data => {
-        this.note = data;
-        this.cdr.detectChanges();
-      });
+    this.noteService.modifyNote(
+      this.actId,
+      titleElement.innerText.trim(),
+      contentElement.innerText.trim()
+    ).subscribe();
   }
 }

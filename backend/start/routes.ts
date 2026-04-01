@@ -14,7 +14,7 @@ router
   .group(() => {
     router.post('/', [controllers.NewNote, 'store']) // Create a new note
 
-    router.get('/', [controllers.NewNote, 'index']) // get all 
+    router.get('/', [controllers.NewNote, 'index']) // get every notes
 
     router.get('/:id', [controllers.NewNote, 'show']) // show specific note
 
