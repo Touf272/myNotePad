@@ -1,13 +1,20 @@
-<h1>Notes List</h1>
-<p>{{ notes.length }}</p>
+<h1 class="page-title">My Notepad</h1>
 
-<hr>
-<div *ngFor="let note of notes">
-  <h3>{{ note.title }}</h3>
-  <p>{{ note.content }}</p>
+<p class="count">{{ notes.length }} Notes</p>
 
-  <button [routerLink]="['/edit', note.id]">Edit</button>
-  <button (click)="delete(note.id)">Delete</button>
+<div class="notes-grid">
+  <div class="note-card" *ngFor="let note of notes" [routerLink]="['/edit', note.id]">
+
+    <div class="note-content">
+      <h3 class="note-title">{{ note.title }}</h3>
+      <p class="note-text">{{ note.content }}</p>
+    </div>
+
+    <button class="delete-btn" (click)="delete(note.id); $event.stopPropagation()">
+      🗑
+    </button>
+
+  </div>
 </div>
 
-<button (click)="new()">New note</button>
+<button class="new-btn" (click)="new()">＋ New Note</button>

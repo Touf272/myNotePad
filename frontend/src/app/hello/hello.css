@@ -1,0 +1,107 @@
+/* Page */
+.page-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Card */
+.editor-card {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Field container */
+.field {
+  padding: 10px;
+  border: 1px solid #777;
+  border-radius: 8px;
+}
+/* Labels */
+label {
+  display: block;
+  font-size: 0.85rem;
+  color: #777;
+  margin-bottom: 6px;
+}
+
+/* Title field */
+.edit-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+
+  background: #fafafa;
+  outline: none;
+}
+
+/* Content field */
+.edit-content {
+  min-height: 180px;
+
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+
+  background: #fafafa;
+  outline: none;
+
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* Focus effect */
+.edit-title:focus,
+.edit-content:focus {
+  border-color: #4CAF50;
+  background: white;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-top: 15px;
+
+  border-top: 1px solid #eee;
+}
+
+/* Save button */
+.save-btn {
+  background: #4CAF50;
+  color: white;
+
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.save-btn:hover {
+  background: #45a049;
+}
+
+/* Back button */
+.back-btn {
+  background: transparent;
+  border: 1px solid #ccc;
+
+  padding: 10px 16px;
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  background: #f3f3f3;
+}

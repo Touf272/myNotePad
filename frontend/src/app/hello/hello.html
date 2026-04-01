@@ -1,7 +1,30 @@
-<h1>Edit Note</h1>
+<h1 class="page-title">Edit Note</h1>
 
-<blockquote contenteditable="true" #title>{{ note.title }}</blockquote>
-<blockquote contenteditable="true" #content>{{ note.content }}</blockquote>
+<div class="editor-card">
 
-<button (click)="save(title, content)">Save</button>
-<button routerLink="/">Back</button>
+  <div class="field">
+    <label>Title</label>
+    <div 
+      class="edit-title"
+      contenteditable="true"
+      #title>
+      {{ note.title || 'Untitled note...' }}
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Content</label>
+    <div 
+      class="edit-content"
+      contenteditable="true"
+      #content>
+      {{ note.content || 'Start writing...' }}
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="save-btn" (click)="save(title, content)">Save</button>
+    <button class="back-btn" routerLink="/">Back</button>
+  </div>
+
+</div>

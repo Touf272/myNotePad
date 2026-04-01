@@ -1,0 +1,102 @@
+/* Page */
+.page-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 5px;
+}
+
+.count {
+  text-align: center;
+  color: #a2a2a2;
+  margin-bottom: 20px;
+}
+
+/* Grid layout */
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  padding: 10px;
+}
+
+/* Note card */
+.note-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 15px;
+  height: 180px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  overflow: hidden;
+}
+
+.note-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+/* Content */
+.note-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.note-text {
+  font-size: 0.9rem;
+  color: #555;
+
+  /* truncate long text */
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Delete button */
+.delete-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+
+  background: #ff4d4d;
+  border: none;
+  color: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+
+  cursor: pointer;
+  font-size: 14px;
+
+  opacity: 0.8;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+.delete-btn:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* New note button */
+.new-btn {
+  display: block;
+  margin: 25px auto;
+  padding: 12px 20px;
+
+  background: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+
+  font-size: 1rem;
+  cursor: pointer;
+
+  transition: background 0.2s;
+}
+
+.new-btn:hover {
+  background: #45a049;
+}

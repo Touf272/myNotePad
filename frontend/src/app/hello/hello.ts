@@ -8,6 +8,7 @@ import { ChangeDetectorRef } from '@angular/core';
   selector: 'app-hello',
   standalone: true,
   templateUrl: './hello.html',
+  styleUrl: './hello.css',
   imports: [RouterLink],
 })
 
