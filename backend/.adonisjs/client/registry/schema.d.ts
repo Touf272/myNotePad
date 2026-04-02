@@ -11,10 +11,10 @@ export interface Registry {
     methods: ["POST"]
     pattern: '/api/notes'
     types: {
-      body: ExtractBody<InferInput<(typeof import('#validators/user').createValidator)>>
+      body: ExtractBody<InferInput<(typeof import('#validators/note').createValidator)>>
       paramsTuple: []
       params: {}
-      query: ExtractQuery<InferInput<(typeof import('#validators/user').createValidator)>>
+      query: ExtractQuery<InferInput<(typeof import('#validators/note').createValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/new_note_controller').default['store']>>>
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/new_note_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
     }

@@ -5,5 +5,4 @@
 
 export const controllers = {
   NewNote: () => import('#controllers/new_note_controller'),
-  Profile: () => import('#controllers/profile_controller'),
 }

@@ -1,5 +1,5 @@
 import Note from '#models/note'
-import { createValidator } from '#validators/user'
+import { createValidator } from '#validators/note'
 import type { HttpContext } from '@adonisjs/core/http'
 import NoteTransformer from '#transformers/note_transformer'
 

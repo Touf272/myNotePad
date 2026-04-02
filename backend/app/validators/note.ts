@@ -14,8 +14,8 @@ export const createValidator = vine.create({
 })
 
 /**
- * Validator to use before validating user credentials
- * during login
+ * Validator to use before validating new note
+ *
  */
 export const modifyValidator = vine.create({
   title: title(),
