@@ -5,14 +5,14 @@ import { ActivatedRoute } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
-  selector: 'app-hello',
+  selector: 'app-modifypage',
   standalone: true,
-  templateUrl: './hello.html',
-  styleUrl: './hello.css',
+  templateUrl: './modifypage.html',
+  styleUrl: './modifypage.css',
   imports: [RouterLink],
 })
 
-export class Hello implements OnInit {
+export class modifyPage implements OnInit {
   note: Note = {
     id: 0,
     title: '',
@@ -34,11 +34,11 @@ export class Hello implements OnInit {
 
     this.noteService.getNote(this.actId).subscribe(data => {
       this.note = data;
-      console.log(this.note)
       this.cdr.markForCheck();
     });
   }
 
+  // Save the current note
   save(titleElement: HTMLElement, contentElement: HTMLElement) {
     this.noteService.modifyNote(
       this.actId,

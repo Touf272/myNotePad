@@ -5,14 +5,14 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
-  selector: 'app-gb',
+  selector: 'app-mainpage',
   standalone: true,
   imports: [RouterLink, CommonModule],
-  templateUrl: './gb.html',
-  styleUrl: './gb.css',
+  templateUrl: './mainpage.html',
+  styleUrl: './mainpage.css',
 })
 
-export class Gb implements OnInit {
+export class mainPage implements OnInit {
   note: Note = {
     id: 0,
     title: '',
@@ -31,23 +31,26 @@ export class Gb implements OnInit {
   ngOnInit() {
     this.loadNotes();
   }
+
+  // Load / update every note
   loadNotes() {
-    console.log("loading notes")
     this.noteService.getAllNotes().subscribe({
       next: (res) => {
-        console.log("response: ", res)
         this.notes = res;
-        console.log("real notes: ", this.notes);
         this.cdr.markForCheck();
       },
       error: (err) => console.error(err)
     });
   }
+
+  // Delete a specific note
   delete(id: Number) {
     this.noteService.deleteNote(id).subscribe(() => {
       this.loadNotes();
     });
   }
+
+  // Create a new note
   new() {
     this.noteService.createNote(
       "New note",

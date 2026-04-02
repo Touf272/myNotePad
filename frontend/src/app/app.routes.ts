@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
-import { Hello } from './hello/hello';
-import { Gb } from './goodbye/gb'
+import { modifyPage } from './modifypage/modifypage';
+import { mainPage } from './mainpage/mainpage'
 
 
 // Redirection process
 export const routes: Routes = [
-    { path: '', redirectTo: 'goodbye', pathMatch: 'full' }, // main
-    {path: 'edit/:id', component: Hello},
-    {path: 'goodbye', component: Gb}
+    { path: '', redirectTo: 'mainpage', pathMatch: 'full' }, // main
+    {path: 'edit/:id', component: modifyPage},
+    {path: 'mainpage', component: mainPage}
 ];
