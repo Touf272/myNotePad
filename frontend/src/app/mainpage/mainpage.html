@@ -1,5 +1,15 @@
 <h1 class="page-title">My Notepad</h1>
 
+<div class="sort-controls">
+  <label for="sort">Sort by:</label>
+  <select id="sort" #Selection (change)="sortNotes(Selection.value)">
+    <option value="createdAt">Created Date</option>
+    <option value="updatedAt">Updated Date</option>
+    <option value="title">Title</option>
+  </select>
+</div>
+
+
 <p class="count">{{ notes.length }} Notes</p>
 
 <div class="notes-grid">
@@ -7,6 +17,10 @@
 
     <div class="note-content">
       <h3 class="note-title">{{ note.title }}</h3>
+      <div class="note-dates">
+        <small>Created: {{ note.createdAt | date:'short' }}</small><br>
+        <small>Updated: {{ note.updatedAt | date:'short' }}</small>
+      </div>
       <p class="note-text">{{ note.content }}</p>
     </div>
 

@@ -43,6 +43,19 @@ export class mainPage implements OnInit {
     });
   }
 
+  // Sort note list based on criteria
+  sortNotes(criteria: string) {
+    this.notes.sort((a, b) => {
+      if (criteria === 'title') {
+        return a.title.localeCompare(b.title);
+      }
+      if (criteria === 'createdAt' || criteria === 'updatedAt') {
+        return new Date(b[criteria]).getTime() - new Date(a[criteria]).getTime();
+      }
+      return 0;
+    });
+  }
+
   // Delete a specific note
   delete(id: Number) {
     this.noteService.deleteNote(id).subscribe(() => {
